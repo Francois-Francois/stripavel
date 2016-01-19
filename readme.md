@@ -1,27 +1,33 @@
-## Laravel PHP Framework
+## Stripavel
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
-
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Stripavel is a ready to use application for Strip + Laravel projects. It include most part of Stripe objects, converted to Eloquent models.
+When you recieve any webhook notification from your Stripe account, data is converted before insert/update in your database, and an event is send for your application.
 
 ## Official Documentation
+### Environment
+Open your .env file and complet new keys : 
+```
+STRIPE_SECRET=null
+STRIPE_PUBLIC=null
+```
+### Commands
+cd into your app un run : 
+```
+composer install
+php artisan migrate
+```
+### Webhooks
+Finaly, configure your stripe account with this webhooks url yourapp.com/webhooks/stripe.
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+##How it works
+Every models use the IsStripeEntity trait. This is the way we can use the createFromStripe method when a notification is send, and update the database.
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
 ### License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+*GNU GENERAL PUBLIC LICENSE version 3* by [Free Software Foundation, Inc.](http://fsf.org/) converted to Markdown. Read the [original GPL v3](http://www.gnu.org/licenses/).
+
+##Todo
+
+Finish Order/Sku/Product/Bitcoin/Fee/Alipay objects
+
