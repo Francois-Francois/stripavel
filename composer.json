@@ -1,7 +1,7 @@
 {
-    "name": "rikless/strivel",
+    "name": "rikless/stripavel",
     "description": "Stripe webkooks quick start for Laravel Framework.",
-    "keywords": ["framework", "laravel", "stripe"],
+    "keywords": ["framework", "laravel", "stripe", "stripavel"],
     "license": "GPLv3",
     "type": "project",
     "require": {
