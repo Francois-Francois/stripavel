@@ -14,11 +14,11 @@ class Invoice extends Model
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'date', 'period_end', 'period_start', 'webhooks_delivered_at'];
 
-    protected $stripeFileds = ['uuid', 'date', 'period_start', 'period_end', 'subtotal', 'total', 'customer_id', 'attempted', 'closed', 'forgiven', 'paid', 'livemode', 'attempt_count', 'description', 'discount_obj', 'metadata', 'discount_id', 'amount_due', 'lines', 'application_fee', 'currency', 'attempted', 'ending_balance', 'starting_balance', 'subscription_proration_date', 'closed', 'next_payment_attempt', 'webhooks_delivered_at', 'charge_id', 'subscription_id', 'tax_percent', 'tax', 'statement_descriptor', 'receipt_number'];
+    static $stripeFields = ['uuid', 'date', 'period_start', 'period_end', 'subtotal', 'total', 'customer_id', 'attempted', 'closed', 'forgiven', 'paid', 'livemode', 'attempt_count', 'description', 'discount_obj', 'metadata', 'discount_id', 'amount_due', 'lines', 'application_fee', 'currency', 'attempted', 'ending_balance', 'starting_balance', 'subscription_proration_date', 'closed', 'next_payment_attempt', 'webhooks_delivered_at', 'charge_id', 'subscription_id', 'tax_percent', 'tax', 'statement_descriptor', 'receipt_number'];
 
-    protected $jsonFileds = ['discount_obj', 'lines', 'metadata'];
+    static $jsonFields = ['discount_obj', 'lines', 'metadata'];
 
-    protected $fieldsConnection = ['uuid' => 'id', 'customer_id' => 'customer', 'discount_obj' => 'discount', 'charge_id' => 'charge', 'subscription_id' => 'subscription'];
+    static $fieldsConnection = ['uuid' => 'id', 'customer_id' => 'customer', 'discount_obj' => 'discount', 'charge_id' => 'charge', 'subscription_id' => 'subscription'];
 
     public function customer()
     {

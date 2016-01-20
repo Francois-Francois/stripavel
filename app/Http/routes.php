@@ -27,5 +27,5 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    post('webhooks/stripe', 'Webhooks\StripeWebhooksController@handleWebhook');
+    Route::post('webhooks/stripe', 'Webhooks\StripeWebhooksController@handleWebhook');
 });

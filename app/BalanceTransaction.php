@@ -14,30 +14,51 @@ class BalanceTransaction extends Model
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
-    protected $stripeFileds = ['uuid', 'amount', 'currency', 'description', 'fee', 'fee_details', 'net', 'charge_id', 'sourced_transfers', 'status', 'type'];
+    static $stripeFields = ['uuid', 'amount', 'currency', 'description', 'fee', 'fee_details', 'net', 'charge_id', 'sourced_transfers', 'status', 'type'];
 
-    protected $jsonFileds = ['available', 'pending'];
+    static $jsonFields = ['available', 'pending'];
 
-    protected $fieldsConnection = ['uuid' => 'id', 'charge_id' => 'charge'];
+    static $fieldsConnection = ['uuid' => 'id', 'charge_id' => 'charge'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function charges()
     {
         return $this->hasMany('App\Charge', 'uuid', 'charge_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function refunds()
     {
         return $this->hasMany('App\Refund', 'balance_transaction_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function reversals()
     {
         return $this->hasMany('App\Reversal', 'balance_transaction_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function disputes()
     {
         return $this->hasMany('App\Dispute', 'balance_transaction_id', 'uuid');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function fee()
+    {
+        return $this->hasOne('App\Fee', 'uuid', 'balance_transaction_id');
     }
 
 }

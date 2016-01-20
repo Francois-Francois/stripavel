@@ -88,7 +88,7 @@ class StripeWebhooksController extends Controller
     }
 
     /**
-     * the payload will update the connected model/entity
+     * The payload will update the connected model/entity
      *
      * @param $payload
      */

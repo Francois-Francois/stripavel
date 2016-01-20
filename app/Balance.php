@@ -14,9 +14,9 @@ class Balance extends Model
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
-    protected $stripeFileds = ['available', 'livemode', 'pending'];
+    static $stripeFields = ['available', 'livemode', 'pending'];
 
-    protected $jsonFileds = ['available', 'pending'];
+    static $jsonFields = ['available', 'pending'];
 
-    protected $fieldsConnection = [];
+    static $fieldsConnection = [];
 }

@@ -14,22 +14,31 @@ class Subscription extends Model
 
     protected $dates = ['start', "current_period_start", "current_period_end", "ended_at", "trial_start", "trial_end", "canceled_at", "start_at", "created_at", "updated_at", "deleted_at", 'start_date','first_renewal_date','end_date' ];
 
-    protected $stripeFileds = ['uuid', 'interval', 'plan_id', 'cancel_at_period_end', 'customer_id', 'plan_obj', 'quantity', 'start', 'status', 'application_fee_percent', 'canceled_at', 'current_period_end','current_period_start', 'discount_obj','ended_at','metadata','trial_end','trial_start','tax_percent'];
+    static $stripeFields = ['uuid', 'interval', 'plan_id', 'cancel_at_period_end', 'customer_id', 'plan_obj', 'quantity', 'start', 'status', 'application_fee_percent', 'canceled_at', 'current_period_end','current_period_start', 'discount_obj','ended_at','metadata','trial_end','trial_start','tax_percent'];
 
-    protected $jsonFileds = ['metadata', 'discount_obj', 'plan_obj'];
+    static $jsonFields = ['metadata', 'discount_obj', 'plan_obj'];
 
-    protected $fieldsConnection = ['uuid' => 'id', 'customer_id' => 'customer', 'plan_id' => 'plan'];
+    static $fieldsConnection = ['uuid' => 'id', 'customer_id' => 'customer', 'plan_id' => 'plan'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function customer()
     {
         return $this->belongsTo('App\User', 'customer_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function invoice()
     {
         return $this->hasMany('App\Invoice', 'subscription_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function plan()
     {
         return $this->belongsTo('App\Plan', 'plan_id', 'plan');
