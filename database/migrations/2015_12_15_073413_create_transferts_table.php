@@ -25,7 +25,7 @@ class CreateTransfertsTable extends Migration
             $table->string('description')->nullable();
             $table->string('destination_id');
             $table->string('destination_payment_id')->nullable();
-            $table->enum('failure_code', ['insufficient_funds', 'account_closed', 'no_account', 'invalid_account_number', 'debit_not_authorized', 'bank_ownership_changed', 'account_frozen', 'could_not_process', 'bank_account_restricted', 'invalid_currency']);
+            $table->enum('failure_code', ['insufficient_funds', 'account_closed', 'no_account', 'invalid_account_number', 'debit_not_authorized', 'bank_ownership_changed', 'account_frozen', 'could_not_process', 'bank_account_restricted', 'invalid_currency'])->nullable();
             $table->string('failure_message')->nullable();
             $table->json('metadata')->nullable();
             $table->json('reversals')->nullable();
