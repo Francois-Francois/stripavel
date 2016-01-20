@@ -14,11 +14,11 @@ class Discount extends Model
 
     protected $dates = ['start', 'end', 'created_at', 'updated_at', 'deleted_at'];
 
-    protected $stripeFileds = ['uuid', 'coupon_obj', 'coupon_id', 'customer_id', 'start', 'end', 'subscription', 'currency'];
+    static $stripeFields = ['uuid', 'coupon_obj', 'coupon_id', 'customer_id', 'start', 'end', 'subscription', 'currency'];
 
-    protected $jsonFileds = ['coupon_obj'];
+    static $jsonFields = ['coupon_obj'];
 
-    protected $fieldsConnection = ['uuid' => 'id', 'coupon_obj' => 'coupon', 'customer_id' => 'customer'];
+    static $fieldsConnection = ['uuid' => 'id', 'coupon_obj' => 'coupon', 'customer_id' => 'customer'];
 
     public function customer()
     {

@@ -14,10 +14,10 @@ class Fileupload extends Model
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'created'];
 
-    protected $stripeFileds = ['uuid', 'created', 'purpose', 'size', 'type', 'url'];
+    static $stripeFields = ['uuid', 'created', 'purpose', 'size', 'type', 'url'];
 
-    protected $jsonFileds = [];
+    static $jsonFields = [];
 
-    protected $fieldsConnection = ['uuid' => 'id'];
+    static $fieldsConnection = ['uuid' => 'id'];
 
 }

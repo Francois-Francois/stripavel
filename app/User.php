@@ -27,57 +27,87 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $stripeFileds = ['uuid', 'created', 'account_balance', 'description', 'discount', 'metadata', 'shipping', 'default_source', 'email', 'currency', 'delinquent', 'sources', 'subscriptions'];
+    static $stripeFields = ['uuid', 'created', 'account_balance', 'description', 'discount', 'metadata', 'shipping', 'default_source', 'email', 'currency', 'delinquent', 'sources', 'subscriptions'];
 
-    protected $jsonFileds = ['discount', 'metadata', 'shipping', 'sources', 'subscriptions'];
+    static $jsonFields = ['discount', 'metadata', 'shipping', 'sources', 'subscriptions'];
 
-    protected $fieldsConnection = ['uuid' => 'id'];
+    static $fieldsConnection = ['uuid' => 'id'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function addresses()
     {
         return $this->hasMany('App\Address', 'user_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function subscriptions()
     {
         return $this->hasMany('App\Subscription', 'customer_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function invoices()
     {
         return $this->hasMany('App\Invoice', 'customer_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function invoicesItems()
     {
         return $this->hasMany('App\Invoiceitem', 'customer_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function charges()
     {
         return $this->hasMany('App\Charge', 'customer_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function creditCards()
     {
         return $this->hasMany('App\Card', 'customer_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function cb()
     {
         return $this->hasOne('App\Card', 'default_source', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function discounts()
     {
         return $this->hasMany('App\Discount', 'customer_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function coupons()
     {
         return $this->hasMany('App\Coupon', 'user_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function bankAccounts()
     {
         return $this->hasMany('App\Bankccount', 'customer_id', 'uuid');

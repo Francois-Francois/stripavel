@@ -14,11 +14,11 @@ class Coupon extends Model
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'created', 'redeem_by'];
 
-    protected $stripeFileds = ['uuid', 'metadata', 'plans', 'created', 'percent_of', 'amount_off', 'currency', 'livemode', 'duration', 'redeem_by', 'max_redemptions', 'times_redeem', 'duration_in_months', 'valid'];
+    static $stripeFields = ['uuid', 'metadata', 'plans', 'created', 'percent_of', 'amount_off', 'currency', 'livemode', 'duration', 'redeem_by', 'max_redemptions', 'times_redeem', 'duration_in_months', 'valid'];
 
-    protected $jsonFileds = ['metadata'];
+    static $jsonFields = ['metadata'];
 
-    protected $fieldsConnection = ['uuid' => 'id'];
+    static $fieldsConnection = ['uuid' => 'id'];
 
 }
 

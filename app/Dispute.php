@@ -14,11 +14,11 @@ class Dispute extends Model
 
     protected $dates = ['created_at', 'updated_at', 'created', 'deleted_at'];
 
-    protected $stripeFileds = ['uuid', 'amount', 'balance_transactions_obj', 'charge_id', 'created', 'currency', 'evidence', 'evidence_details', 'is_charge_refundable', 'livemode', 'metadata', 'reason', 'status'];
+    static $stripeFields = ['uuid', 'amount', 'balance_transactions_obj', 'charge_id', 'created', 'currency', 'evidence', 'evidence_details', 'is_charge_refundable', 'livemode', 'metadata', 'reason', 'status'];
 
-    protected $jsonFileds = ['balance_transactions', 'evidence', 'evidence_details', 'metadata'];
+    static $jsonFields = ['balance_transactions', 'evidence', 'evidence_details', 'metadata'];
 
-    protected $fieldsConnection = ['uuid' => 'id', 'balance_transactions_obj' => 'balance_transactions', 'charge_id' => 'charge'];
+    static $fieldsConnection = ['uuid' => 'id', 'balance_transactions_obj' => 'balance_transactions', 'charge_id' => 'charge'];
 
     public function balanceTransaction()
     {

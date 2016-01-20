@@ -14,37 +14,55 @@ class Charge extends Model
 
     protected $dates = ['created_at', 'deleted_at', 'updated_at'];
 
-    protected $stripeFileds = ['uuid', 'livemode', 'paid', 'status', 'amount', 'currency', 'refunded', 'refunds', 'card_id', 'captured', 'balance_transaction_id', 'transfer_id', 'failure_message', 'failure_code', 'fraud_details', 'invoice_id', 'metadata', 'amount_refunded', 'customer_id', 'source', 'description', 'dispute', 'statement_descriptor', 'receipt_email', 'receipt_number', 'shipping', 'destination', 'application_fee'];
+    static $stripeFields = ['uuid', 'livemode', 'paid', 'status', 'amount', 'currency', 'refunded', 'refunds', 'card_id', 'captured', 'balance_transaction_id', 'transfer_id', 'failure_message', 'failure_code', 'fraud_details', 'invoice_id', 'metadata', 'amount_refunded', 'customer_id', 'source', 'description', 'dispute', 'statement_descriptor', 'receipt_email', 'receipt_number', 'shipping', 'destination', 'application_fee'];
 
-    protected $jsonFileds = ['dispute', 'fraud_details', 'metadata', 'refunds', 'shipping'];
+    static $jsonFields = ['dispute', 'fraud_details', 'metadata', 'refunds', 'shipping'];
 
-    protected $fieldsConnection = ['uuid' => 'id', 'customer_id', 'customer', 'account_id' => 'account', 'invoice_id' => 'invoice'];
+    static $fieldsConnection = ['uuid' => 'id', 'customer_id', 'customer', 'account_id' => 'account', 'invoice_id' => 'invoice'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function customer()
     {
         return $this->belongsTo('App\User', 'customer_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function invoice()
     {
         return $this->belongsTo('App\Invoice', 'invoice_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function cb()
     {
         return $this->belongsTo('App\Card', 'card_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function balanceTransaction()
     {
         return $this->belongsTo('App\BalanceTransaction', 'balance_transaction_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function transfer()
     {
         return $this->hasOne('App\Transfer', 'transfer_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function disputes()
     {
         return $this->hasMany('App\Dispute', 'charge_id', 'uuid');

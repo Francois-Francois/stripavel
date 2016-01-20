@@ -14,17 +14,23 @@ class Plan extends Model
 
     protected $dates = ['created', 'created_at', 'deleted_at', 'updated_at'];
 
-    protected $stripeFileds = ['uuid', 'name', 'statement_descriptor','trial_period_days', 'amount', 'currency', 'currency_badge', 'interval','interval_count','metadata', 'more', 'created'];
+    static $stripeFields = ['uuid', 'name', 'statement_descriptor','trial_period_days', 'amount', 'currency', 'currency_badge', 'interval','interval_count','metadata', 'more', 'created'];
 
-    protected $jsonFileds = ['metadata'];
+    static $jsonFields = ['metadata'];
 
-    protected $fieldsConnection = ['uuid' => 'id'];
+    static $fieldsConnection = ['uuid' => 'id'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function subscriptions()
     {
         return $this->hasMany('App\Subscription', 'plan_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function invoices()
     {
         return $this->hasMany('App\Invoice', 'plan_id', 'uuid');
