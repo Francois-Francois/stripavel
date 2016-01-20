@@ -68,4 +68,12 @@ class Charge extends Model
         return $this->hasMany('App\Dispute', 'charge_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function fee()
+    {
+        return $this->hasOne('App\Fee', 'uuid', 'charge_id');
+    }
+
 }

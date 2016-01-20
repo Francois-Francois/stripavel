@@ -52,5 +52,14 @@ class BalanceTransaction extends Model
         return $this->hasMany('App\Dispute', 'balance_transaction_id', 'uuid');
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function fee()
+    {
+        return $this->hasOne('App\Fee', 'uuid', 'balance_transaction_id');
+    }
+
 }
 
