@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'uuid', 'created', 'first_name', 'last_name', 'ip_address', 'account_balance', 'description', 'discount', 'metadata', 'shipping', 'default_source' ,'name', 'email', 'password', 'currency', 'delinquent', 'sources', 'subscriptions', 'last_four', 'year', 'month', 'fingerprint', 'confirmation_code'
+        'uuid', 'created', 'first_name', 'last_name', 'ip_address', 'account_balance', 'description', 'discount_obj', 'metadata', 'shipping', 'default_source' ,'name', 'email', 'password', 'currency', 'delinquent', 'sources', 'subscriptions', 'last_four', 'year', 'month', 'fingerprint', 'confirmation_code'
     ];
 
     /**
@@ -27,11 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    static $stripeFields = ['uuid', 'created', 'account_balance', 'description', 'discount', 'metadata', 'shipping', 'default_source', 'email', 'currency', 'delinquent', 'sources', 'subscriptions'];
+    protected $dates = ['created_at', 'update_at', 'created'];
 
-    static $jsonFields = ['discount', 'metadata', 'shipping', 'sources', 'subscriptions'];
+    static $stripeFields = ['uuid', 'created', 'account_balance', 'description', 'discount_obj', 'metadata', 'shipping', 'default_source', 'email', 'currency', 'delinquent', 'sources', 'subscriptions_obj'];
 
-    static $fieldsConnection = ['uuid' => 'id'];
+    static $jsonFields = ['discount_obj', 'metadata', 'shipping', 'sources', 'subscriptions_obj'];
+
+    static $fieldsConnection = ['uuid' => 'id', 'discount_obj' => 'discount', 'subscriptions_obj' => 'subscriptions'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

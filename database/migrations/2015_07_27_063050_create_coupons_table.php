@@ -21,10 +21,10 @@ class CreateCouponsTable extends Migration
             $table->tinyInteger('duration_in_months')->nullable();
             $table->enum('duration', ['forever', 'once', 'repeating'])->nullable();
             $table->string('metadata')->nullable();
-            $table->integer('max_redemptions');
-            $table->timestamp('redeem_by');
+            $table->integer('max_redemptions')->nullable();
+            $table->timestamp('redeem_by')->nullable();
             $table->integer('times_redeemed')->default(0);
-            $table->boolean('valid');
+            $table->boolean('valid')->default(1);
             $table->json('plans')->nullable();
             $table->enum('currency', ['usd', 'gbp', 'eur']);
             $table->softDeletes();

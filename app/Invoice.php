@@ -12,7 +12,7 @@ class Invoice extends Model
 
     protected $fillable = ['uuid', 'date', 'period_start', 'period_end', 'subtotal', 'total', 'customer_id', 'attempted', 'closed', 'forgiven', 'paid', 'livemode', 'attempt_count', 'description', 'discount_obj', 'metadata', 'discount_id', 'amount_due', 'lines', 'application_fee', 'currency', 'attempted', 'ending_balance', 'starting_balance', 'subscription_proration_date', 'closed', 'next_payment_attempt', 'webhooks_delivered_at', 'charge_id', 'subscription_id', 'tax_percent', 'tax', 'statement_descriptor', 'receipt_number'];
 
-    protected $dates = ['created_at', 'updated_at', 'deleted_at', 'date', 'period_end', 'period_start', 'webhooks_delivered_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at', 'date', 'period_end', 'period_start', 'webhooks_delivered_at', 'next_payment_attempt'];
 
     static $stripeFields = ['uuid', 'date', 'period_start', 'period_end', 'subtotal', 'total', 'customer_id', 'attempted', 'closed', 'forgiven', 'paid', 'livemode', 'attempt_count', 'description', 'discount_obj', 'metadata', 'discount_id', 'amount_due', 'lines', 'application_fee', 'currency', 'attempted', 'ending_balance', 'starting_balance', 'subscription_proration_date', 'closed', 'next_payment_attempt', 'webhooks_delivered_at', 'charge_id', 'subscription_id', 'tax_percent', 'tax', 'statement_descriptor', 'receipt_number'];
 

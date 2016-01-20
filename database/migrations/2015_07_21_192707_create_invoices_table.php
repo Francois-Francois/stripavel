@@ -37,7 +37,7 @@ class CreateInvoicesTable extends Migration
             $table->integer('starting_balance')->nullable();
             $table->integer('subscription_proration_date')->nullable();
             $table->timestamp('next_payment_attempt')->nullable();
-            $table->timestamp('webhooks_delivered_at');
+            $table->timestamp('webhooks_delivered_at')->nullable();
             $table->string('charge_id')->nullable();
             $table->string('subscription_id')->nullable();
             $table->smallInteger('tax_percent')->nullable();

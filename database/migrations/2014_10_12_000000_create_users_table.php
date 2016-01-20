@@ -16,11 +16,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('created')->nullable();
             $table->integer('account_balance')->default(0);
             $table->string('default_source')->nullable();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
-            $table->string('password', 60);
+            $table->string('password', 60)->nullable();
             $table->rememberToken();
             $table->string('ip_address')->nullable();
             $table->enum('currency', ['usd', 'gbp', 'eur'])->nullable();

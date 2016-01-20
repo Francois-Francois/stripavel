@@ -45,7 +45,7 @@ trait IsStripeEntity
      */
     public function createFromStripe($notification)
     {
-        $entity = $this->where('uuid', $notification['id'])->first();
+        $entity = !isset($notification['id']) ? null : $this->where('uuid', $notification['id'])->first();
 
         if(!is_null($entity))
             return $entity->update($this->buildAttributesFromStripe($notification));

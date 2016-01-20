@@ -16,7 +16,7 @@ class Charge extends Model
 
     static $stripeFields = ['uuid', 'livemode', 'paid', 'status', 'amount', 'currency', 'refunded', 'refunds', 'card_id', 'captured', 'balance_transaction_id', 'transfer_id', 'failure_message', 'failure_code', 'fraud_details', 'invoice_id', 'metadata', 'amount_refunded', 'customer_id', 'source', 'description', 'dispute', 'statement_descriptor', 'receipt_email', 'receipt_number', 'shipping', 'destination', 'application_fee'];
 
-    static $jsonFields = ['dispute', 'fraud_details', 'metadata', 'refunds', 'shipping'];
+    static $jsonFields = ['dispute', 'fraud_details', 'metadata', 'refunds', 'shipping', 'source'];
 
     static $fieldsConnection = ['uuid' => 'id', 'customer_id', 'customer', 'account_id' => 'account', 'invoice_id' => 'invoice'];
 
