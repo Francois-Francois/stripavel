@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Webhooks;
 
 use App\Exceptions\EventClassNotAvailableException;
+use App\Exceptions\StripeEntityNotAvailable;
 use App\Exceptions\StripeNotificationNotAvailableException;
 use Illuminate\Support\Facades\Request;
 use Stripe\Event as StripeEvent;
@@ -100,7 +101,10 @@ class StripeWebhooksController extends Controller
         {
             $model = new $className;
 
-            $model->createFromStripe($payload['data']['object']);
+            if(method_exists($model, 'createFromStripe'))
+                return $model->createFromStripe($payload);
+
+            throw new StripeEntityNotAvailable('This model doesn\'t use StripeEntity trait, or Stripe');
         }
     }
 }
