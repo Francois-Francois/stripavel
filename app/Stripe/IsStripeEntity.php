@@ -15,20 +15,20 @@ trait IsStripeEntity
      *
      * @return array
      */
-    public function getFiledsConnection($revert = false)
+    public function getFieldsConnection($revert = false)
     {
         $connections = [];
 
         //loop on all database fields which belongs to stripe
-        foreach (static::$stripeFileds as $filed) {
+        foreach (static::$stripeFields as $field) {
             /*
             | The goal is to return an array with transformed values
             | ex : ['uuid' => 'id']
             */
-            if (array_key_exists($filed, static::$fieldsConnection)) {
-                $connections[$filed] = static::$fieldsConnection[$filed];
+            if (array_key_exists($field, static::$fieldsConnection)) {
+                $connections[$field] = static::$fieldsConnection[$field];
             } else {
-                $connections[$filed] = $filed;
+                $connections[$field] = $field;
             }
 
         }
@@ -77,7 +77,7 @@ trait IsStripeEntity
     public function buildAttributesFromStripe($notification)
     {
 
-        foreach ($this->getFiledsConnection() as $key => $field)
+        foreach ($this->getFieldsConnection() as $key => $field)
         {
             //['uuid' => 'id']
 
@@ -92,7 +92,7 @@ trait IsStripeEntity
     }
 
     /**
-     * All Stripe models should have a jsonFileds property,
+     * All Stripe models should have a jsonFields property,
      * so we know when we need to json_encode the payload
      *
      * @param $data
@@ -105,7 +105,7 @@ trait IsStripeEntity
 
         foreach($data as $key => $value)
         {
-            $output[$key] = in_array($key, static::$jsonFileds) ? json_encode($value) : $value;
+            $output[$key] = in_array($key, static::$jsonFields) ? json_encode($value) : $value;
         }
 
         return $output;
