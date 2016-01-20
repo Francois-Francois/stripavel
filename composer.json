@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "laravel/framework": "5.3.*",
+        "laravel/framework": "5.2.*",
         "stripe/stripe-php": "~3.6",
         "symfony/polyfill-iconv": "^1.0"
     },
