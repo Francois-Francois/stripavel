@@ -1,9 +1,10 @@
 ## Stripavel
 
-Stripavel is a ready to use application for Stripe + Laravel projects. It include most part of Stripe objects, converted to Eloquent models.
-When you receive any webhook notification from your Stripe account, conversion is made before insert/update data through your database, and an event is send for your application.
+Stripavel is a ready to use application for Stripe + Laravel projects. It include most part of Stripe objects, converted to Eloquent models : Migrations schemas, events, routes, controller and stuffs.
+When you receive any webhook notification from your Stripe account, conversion is made before insert/update/delete (soft) data through your database, and an event is send for your application.
+So you always have a perfect synchronisation between your app and your Stripe data.
 
-## Official Documentation
+##Documentation
 
 ###Composer
 Run :
@@ -32,8 +33,7 @@ This tool is a laravel fork. So to complete your installation, just read [Larave
 
 
 ### License
-*GNU GENERAL PUBLIC LICENSE version 3* by [Free Software Foundation, Inc.](http://fsf.org/) converted to Markdown. Read the [original GPL v3](http://www.gnu.org/licenses/).
+*GNU GENERAL PUBLIC LICENSE version 3* by [Free Software Foundation, Inc.](http://fsf.org/). Read the [original GPL v3](http://www.gnu.org/licenses/).
 
 ##Todo
-
 Finish Order/Sku/Product/Bitcoin/Alipay objects

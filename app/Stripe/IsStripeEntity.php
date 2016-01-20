@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Stripe;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class IsStripeEntity
@@ -45,12 +46,11 @@ trait IsStripeEntity
      */
     public function createFromStripe($notification)
     {
-        $entity = !isset($notification['id']) ? null : $this->where('uuid', $notification['id'])->first();
+        $entity = !isset($notification['data']['object']['id']) ? null : $this->where('uuid', $notification['data']['object']['id'])->first();
 
-        if(!is_null($entity))
-            return $entity->update($this->buildAttributesFromStripe($notification));
+        if(!is_null($entity)) return $this->updateEntity($entity, $notification);
 
-        return $this->create($this->buildAttributesFromStripe($notification));
+        return $this->create($this->buildAttributesFromStripe($notification['data']['object']));
     }
 
     /**
@@ -109,6 +109,23 @@ trait IsStripeEntity
         }
 
         return $output;
+    }
+
+    /**
+     * Push new data or delete model when notification
+     * contains .deleted
+     * @param Model $entity
+     * @param       $notification
+     *
+     * @return bool|int|null
+     * @throws \Exception
+     */
+    public function updateEntity(Model $entity, $notification)
+    {
+        if(preg_match('/\.deleted/', $notification['type']))
+            return $entity->delete();
+
+        return $entity->update($this->buildAttributesFromStripe($notification['data']['object']));
     }
 
 }
