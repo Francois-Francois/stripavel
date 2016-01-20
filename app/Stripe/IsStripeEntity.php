@@ -10,6 +10,7 @@ trait IsStripeEntity
 {
 
     /**
+     * We need to know all fields changed from Stripe API
      * @param bool $revert
      *
      * @return array
@@ -21,7 +22,6 @@ trait IsStripeEntity
         //loop on all database fields which belongs to stripe
         foreach (static::$stripeFileds as $filed) {
             /*
-            | We need to know all fields changed from Stripe API
             | The goal is to return an array with transformed values
             | ex : ['uuid' => 'id']
             */
@@ -107,7 +107,6 @@ trait IsStripeEntity
         {
             $output[$key] = in_array($key, static::$jsonFileds) ? json_encode($value) : $value;
         }
-
 
         return $output;
     }
