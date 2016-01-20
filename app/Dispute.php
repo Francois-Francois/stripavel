@@ -20,11 +20,17 @@ class Dispute extends Model
 
     static $fieldsConnection = ['uuid' => 'id', 'balance_transactions_obj' => 'balance_transactions', 'charge_id' => 'charge'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function balanceTransaction()
     {
         return $this->belongsTo('App\BalanceTransaction', 'balance_transaction_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function charge()
     {
         return $this->belongsTo('App\Charge', 'charge_id', 'uuid');

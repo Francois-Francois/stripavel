@@ -20,26 +20,41 @@ class Invoice extends Model
 
     static $fieldsConnection = ['uuid' => 'id', 'customer_id' => 'customer', 'discount_obj' => 'discount', 'charge_id' => 'charge', 'subscription_id' => 'subscription'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function customer()
     {
         return $this->belongsTo('App\User', 'customer_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function discount()
     {
         return $this->belongsTo('App\Disount', 'discount_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function charges()
     {
         return $this->hasMany('App\Charge', 'uuid', 'charge_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function subscription()
     {
         return $this->belongsTo('App\subscription', 'subscription_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function items()
     {
          return $this->hasMany('App\Invoiceitem', 'invoice_id', 'uuid');

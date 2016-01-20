@@ -20,11 +20,17 @@ class Discount extends Model
 
     static $fieldsConnection = ['uuid' => 'id', 'coupon_obj' => 'coupon', 'customer_id' => 'customer'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function customer()
     {
         return $this->belongsTo('App\User', 'customer_id', 'uuid');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function invoice()
     {
         return $this->hasOne('App\Invoice', 'discount_id', 'uuid');
