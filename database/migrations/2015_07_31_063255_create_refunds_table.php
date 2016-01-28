@@ -21,8 +21,8 @@ class CreateRefundsTable extends Migration
             $table->string('balance_transaction_id')->nullable();
             $table->string('charge_id');
             $table->json('metadata')->nullable();
-            $table->enum('reason', ['duplicate', 'fraudulent', 'requested_by_customer']);
-            $table->string('receipt_number');
+            $table->enum('reason', ['duplicate', 'fraudulent', 'requested_by_customer'])->nullable();
+            $table->string('receipt_number')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
