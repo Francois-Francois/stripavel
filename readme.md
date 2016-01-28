@@ -36,4 +36,4 @@ This tool is a laravel fork. So to complete your installation, just read [Larave
 *GNU GENERAL PUBLIC LICENSE version 3* by [Free Software Foundation, Inc.](http://fsf.org/). Read the [original GPL v3](http://www.gnu.org/licenses/).
 
 ##Todo
-Finish Order/Sku/Product/Bitcoin/Alipay objects
+Finish Order/Sku/Bitcoin/Alipay objects
