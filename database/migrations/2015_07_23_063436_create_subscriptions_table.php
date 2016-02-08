@@ -15,7 +15,6 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('uuid');
-            $table->string('interval')->nullable();
             $table->string('plan_id')->nullable();
             $table->boolean('cancel_at_period_end')->default(true);
             $table->string('customer_id');
@@ -35,12 +34,10 @@ class CreateSubscriptionsTable extends Migration
             $table->timestamp('trial_end')->nullable();
             $table->timestamp('trial_start')->nullable();
             $table->decimal('tax_percent')->nullable();
-            $table->timestamp('start_at')->nullable();
             $table->boolean('active')->default(true);
             $table->date('start_date')->nullable();
             $table->date('first_renewal_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->integer('animal_id')->nullable();
             $table->integer('address_id')->nullable();
             $table->timestamps();
             $table->softDeletes();

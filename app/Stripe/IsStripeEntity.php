@@ -61,7 +61,7 @@ trait IsStripeEntity
      */
     public function updateFromStripe($notification)
     {
-        return $this->update($this->buildAttributesFromStripe($notification));
+        return $this->update($this->buildAttributesFromStripe($notification['data']['object']));
     }
 
     /**
