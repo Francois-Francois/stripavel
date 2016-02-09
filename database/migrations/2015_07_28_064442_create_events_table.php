@@ -22,6 +22,7 @@ class CreateEventsTable extends Migration
             $table->string('type');
             $table->string('api_version');
             $table->string('request')->nullable();
+            $table->string('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
