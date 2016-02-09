@@ -2,6 +2,7 @@
 
 namespace App\Stripe;
 use Illuminate\Database\Eloquent\Model;
+use Stripe\StripeObject;
 
 /**
  * Class IsStripeEntity
@@ -126,6 +127,21 @@ trait IsStripeEntity
             return $entity->delete();
 
         return $entity->update($this->buildAttributesFromStripe($notification['data']['object']));
+    }
+
+    /**
+     * On all requests, Stripe's lib convert json in StripeObject instance.
+     * You can now have response formatted like in documentation.
+     *
+     * @param StripeObject $object
+     *
+     * @return array
+     */
+    public function responseToArray(StripeObject $object)
+    {
+        $json = $object->__toJSON();
+
+        return (array) json_decode($json, true);
     }
 
 }
