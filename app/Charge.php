@@ -19,7 +19,7 @@ class Charge extends Model
 
     static $jsonFields = ['dispute', 'fraud_details', 'metadata', 'refunds', 'shipping', 'source'];
 
-    static $fieldsConnection = ['uuid' => 'id', 'customer_id', 'customer', 'account_id' => 'account', 'invoice_id' => 'invoice', 'balance_transaction_id' => 'balance_transaction'];
+    static $fieldsConnection = ['uuid' => 'id', 'customer_id' => 'customer', 'account_id' => 'account', 'invoice_id' => 'invoice', 'balance_transaction_id' => 'balance_transaction'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
