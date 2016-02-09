@@ -18,7 +18,7 @@ class Bankaccount extends Model
 
     static $jsonFields = [];
 
-    static $fieldsConnection = ['uuid' => 'id', 'customer_id', 'customer', 'account_id', 'account'];
+    static $fieldsConnection = ['uuid' => 'id', 'customer_id' => 'customer', 'account_id' => 'account'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

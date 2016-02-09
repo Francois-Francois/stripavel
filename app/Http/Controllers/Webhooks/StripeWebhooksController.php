@@ -85,6 +85,7 @@ class StripeWebhooksController extends Controller
             'type' => $payload['type'],
             'api_version' => $payload['api_version'],
             'request' => $payload['request'],
+            'user_id' => isset($payload['user_id']) ? $payload['user_id'] : null
         ];
     }
 
