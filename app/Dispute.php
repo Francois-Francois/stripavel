@@ -10,11 +10,11 @@ class Dispute extends Model
 {
     use SoftDeletes, IsStripeEntity;
 
-    protected $fillable = ['uuid', 'amount', 'balance_transactions_obj', 'balance_transactions_id', 'charge_id', 'created', 'currency', 'evidence', 'evidence_details', 'is_charge_refundable', 'livemode', 'metadata', 'reason', 'status'];
+    protected $fillable = ['uuid', 'amount', 'balance_transactions_obj', 'balance_transactions_id', 'charge_id', 'created', 'currency', 'evidence', 'evidence_details', 'is_charge_refundable', 'metadata', 'reason', 'status'];
 
     protected $dates = ['created_at', 'updated_at', 'created', 'deleted_at'];
 
-    static $stripeFields = ['uuid', 'amount', 'balance_transactions_obj', 'charge_id', 'created', 'currency', 'evidence', 'evidence_details', 'is_charge_refundable', 'livemode', 'metadata', 'reason', 'status'];
+    static $stripeFields = ['uuid', 'amount', 'balance_transactions_obj', 'charge_id', 'created', 'currency', 'evidence', 'evidence_details', 'is_charge_refundable', 'metadata', 'reason', 'status'];
 
     static $jsonFields = ['balance_transactions_obj', 'evidence', 'evidence_details', 'metadata'];
 

@@ -23,7 +23,6 @@ class CreateInvoicesTable extends Migration
             $table->boolean('closed')->default(false);
             $table->boolean('forgiven')->default(false);
             $table->boolean('paid')->default(false);
-            $table->boolean('livemode')->default(false);
             $table->smallInteger('attempt_count');
             $table->string('description')->nullable();
             $table->json('discount_obj')->nullable();

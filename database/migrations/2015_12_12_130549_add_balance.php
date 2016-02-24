@@ -15,7 +15,6 @@ class AddBalance extends Migration
         Schema::create('balances', function (Blueprint $table) {
             $table->increments('id');
             $table->json('available');
-            $table->boolean('livemode')->default(false);
             $table->json('pending');
             $table->timestamps();
             $table->softDeletes();
