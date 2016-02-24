@@ -13,7 +13,6 @@ class CreateChargesTable extends Migration
         Schema::create('charges', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('uuid');
-            $table->boolean('livemode')->default(false);
             $table->boolean('paid')->default(false);
             $table->enum('status', ['succeeded', 'failed']);
             $table->integer('amount')->default(0);

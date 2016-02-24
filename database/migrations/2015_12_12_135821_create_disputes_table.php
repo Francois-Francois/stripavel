@@ -24,7 +24,6 @@ class CreateDisputesTable extends Migration
             $table->json('evidence')->nullable();
             $table->json('evidence_details')->nullable();
             $table->boolean('is_charge_refundable')->default(false);
-            $table->boolean('livemode')->default(false);
             $table->json('metadata')->nullable();
             $table->enum('reason', ['duplicate', 'fraudulent', 'subscription_canceled', 'product_unacceptable', 'product_not_received', 'unrecognized', 'credit_not_processed', 'incorrect_account_details', 'insufficient_funds', 'bank_cannot_process', 'debit_not_authorized', 'general']);
             $table->enum('status', ['warning_needs_response', 'warning_under_review', 'warning_closed', 'needs_response', 'response_disabled', 'under_review', 'charge_refunded', 'won', 'lost']);
