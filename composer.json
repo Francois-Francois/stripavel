@@ -1,13 +1,13 @@
 {
     "name": "rikless/stripavel",
     "description": "Stripe quick start for Laravel Framework.",
-    "keywords": ["framework", "laravel", "stripe", "stripavel"],
+    "keywords": ["stripe", "laravel", "stripavel", "framework"],
     "license": "GPLv3",
     "type": "project",
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.2.*",
-        "stripe/stripe-php": "~3.6",
+        "stripe/stripe-php": "~3.9",
         "symfony/polyfill-iconv": "^1.0"
     },
     "require-dev": {

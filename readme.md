@@ -28,12 +28,12 @@ Finaly, configure your stripe account with this webhooks url yourapp.com/webhook
 
 ##How it works
 Every models use the App\Stripe\IsStripeEntity trait. This is the way we can use the createFromStripe method when a notification is send, and update the database.
-All is ready to work with postgresql, but if your Mysql version support json data, it should work.
+All is ready to work with postgresql, but if your Mysql version support json data, it should works.
 This tool is a laravel fork. So to complete your installation, just read [Laravel documentation](https://laravel.com/docs/5.2#configuration)
 
 
 ### License
-*GNU GENERAL PUBLIC LICENSE version 3* by [Free Software Foundation, Inc.](http://fsf.org/). Read the [original GPL v3](http://www.gnu.org/licenses/).
+*GNU GENERAL PUBLIC LICENSE version 3* by [Free Software Foundation, Inc.](http://fsf.org/)
 
 ##Todo
 Finish Order/Sku/Bitcoin/Alipay objects
