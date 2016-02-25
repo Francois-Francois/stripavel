@@ -55,7 +55,7 @@ trait IsStripeEntity
     }
 
     /**
-     * Update model from stripe notification after convertion
+     * Update model from stripe notification after conversion
      * @param $notification
      *
      * @return mixed
@@ -71,9 +71,10 @@ trait IsStripeEntity
      * Last part is a json cast to write in DB.
      *
      * @param $notification
-     * @param $data
      *
      * @return mixed
+     * @internal param $data
+     *
      */
     public function buildAttributesFromStripe($notification)
     {
