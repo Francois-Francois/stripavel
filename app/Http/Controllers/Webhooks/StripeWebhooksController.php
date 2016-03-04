@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Webhooks;
 use App\Exceptions\EventClassNotAvailableException;
 use App\Exceptions\StripeEntityNotAvailable;
 use App\Exceptions\StripeNotificationNotAvailableException;
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use Exception;
 use Illuminate\Support\Facades\Request;
 use Stripe\Event as StripeEvent;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Exception;
 
 class StripeWebhooksController extends Controller
 {
@@ -24,11 +24,11 @@ class StripeWebhooksController extends Controller
     {
         $payload = $this->getJsonPayload();
 
-        if ($payload['livemode'] == true && ! $this->eventExistsOnStripe($payload['id'])) {
+        if ($payload['livemode'] == true && !$this->eventExistsOnStripe($payload['id'])) {
             throw new StripeNotificationNotAvailableException($payload['id'] . 'does not exists on Stripe');
         }
 
-        $eventClass = 'App\Events\Stripe\\'.studly_case(str_replace('.', '_', $payload['type']));
+        $eventClass = 'App\Events\Stripe\\' . studly_case(str_replace('.', '_', $payload['type']));
 
         if (class_exists($eventClass)) {
 
@@ -45,13 +45,13 @@ class StripeWebhooksController extends Controller
     /**
      * Verify with Stripe that the event is genuine.
      *
-     * @param  string  $id
+     * @param  string $id
      * @return bool
      */
     protected function eventExistsOnStripe($id)
     {
         try {
-            return ! is_null(StripeEvent::retrieve($id, env('STRIPE_SECRET')));
+            return !is_null(StripeEvent::retrieve($id, env('STRIPE_SECRET')));
         } catch (Exception $e) {
             return false;
         }
@@ -64,7 +64,7 @@ class StripeWebhooksController extends Controller
      */
     protected function getJsonPayload()
     {
-        return (array) json_decode(Request::getContent(), true);
+        return (array)json_decode(Request::getContent(), true);
     }
 
 
@@ -93,17 +93,19 @@ class StripeWebhooksController extends Controller
      * The payload will update the connected model/entity
      *
      * @param $payload
+     * @return
+     * @throws StripeEntityNotAvailable
      */
     public function insertUpdatedData($payload)
     {
         $className = config('stripemodels.' . str_replace('.', '-', $payload['type']));
 
-        if(!is_null($className))
-        {
+        if (!is_null($className)) {
             $model = new $className;
 
-            if(method_exists($model, 'createFromStripe'))
+            if (method_exists($model, 'createFromStripe')) {
                 return $model->createFromStripe($payload);
+            }
 
             throw new StripeEntityNotAvailable('This model doesn\'t use StripeEntity trait, or Stripe');
         }

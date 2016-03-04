@@ -6,19 +6,62 @@ use App\Stripe\IsStripeEntity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class BalanceTransaction
+ * @package App
+ */
 class BalanceTransaction extends Model
 {
     use SoftDeletes, IsStripeEntity;
 
-    protected $fillable = ['uuid', 'amount', 'currency', 'description', 'fee', 'fee_details', 'net', 'charge_id', 'sourced_transfers', 'status', 'type'];
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'uuid',
+        'amount',
+        'currency',
+        'description',
+        'fee',
+        'fee_details',
+        'net',
+        'charge_id',
+        'sourced_transfers',
+        'status',
+        'type'
+    ];
 
+    /**
+     * @var array
+     */
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
-    static $stripeFields = ['uuid', 'amount', 'currency', 'description', 'fee', 'fee_details', 'net', 'charge_id', 'sourced_transfers', 'status', 'type'];
+    /**
+     * @var array
+     */
+    public static $stripeFields = [
+        'uuid',
+        'amount',
+        'currency',
+        'description',
+        'fee',
+        'fee_details',
+        'net',
+        'charge_id',
+        'sourced_transfers',
+        'status',
+        'type'
+    ];
 
-    static $jsonFields = ['available', 'pending'];
+    /**
+     * @var array
+     */
+    public static $jsonFields = ['available', 'pending'];
 
-    static $fieldsConnection = ['uuid' => 'id', 'charge_id' => 'charge'];
+    /**
+     * @var array
+     */
+    public static $fieldsConnection = ['uuid' => 'id', 'charge_id' => 'charge'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -60,6 +103,4 @@ class BalanceTransaction extends Model
     {
         return $this->hasOne('App\Fee', 'uuid', 'balance_transaction_id');
     }
-
 }
-
