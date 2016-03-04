@@ -7,19 +7,100 @@ use App\Stripe\LookForRefunds;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Charge
+ * @package App
+ */
 class Charge extends Model
 {
     use SoftDeletes, IsStripeEntity, LookForRefunds;
 
-    protected $fillable = ['uuid', 'paid', 'status', 'amount', 'currency', 'refunded', 'refunds', 'card_id', 'captured', 'balance_transaction_id', 'transfer_id', 'failure_message', 'failure_code', 'fraud_details', 'invoice_id', 'metadata', 'amount_refunded', 'customer_id', 'source', 'description', 'dispute', 'statement_descriptor', 'receipt_email', 'receipt_number', 'shipping', 'destination', 'application_fee'];
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'uuid',
+        'paid',
+        'status',
+        'amount',
+        'currency',
+        'refunded',
+        'refunds',
+        'card_id',
+        'captured',
+        'balance_transaction_id',
+        'transfer_id',
+        'failure_message',
+        'failure_code',
+        'fraud_details',
+        'invoice_id',
+        'metadata',
+        'amount_refunded',
+        'customer_id',
+        'source',
+        'description',
+        'dispute',
+        'statement_descriptor',
+        'receipt_email',
+        'receipt_number',
+        'shipping',
+        'destination',
+        'application_fee'
+    ];
 
+    /**
+     * @var array
+     */
     protected $dates = ['created_at', 'deleted_at', 'updated_at'];
 
-    static $stripeFields = ['uuid', 'paid', 'status', 'amount', 'currency', 'refunded', 'refunds', 'card_id', 'captured', 'balance_transaction_id', 'transfer_id', 'failure_message', 'failure_code', 'fraud_details', 'invoice_id', 'metadata', 'amount_refunded', 'customer_id', 'source', 'description', 'dispute', 'statement_descriptor', 'receipt_email', 'receipt_number', 'shipping', 'destination', 'application_fee'];
+    /**
+     * @var array
+     */
+    public static $stripeFields = [
+        'uuid',
+        'paid',
+        'status',
+        'amount',
+        'currency',
+        'refunded',
+        'refunds',
+        'card_id',
+        'captured',
+        'balance_transaction_id',
+        'transfer_id',
+        'failure_message',
+        'failure_code',
+        'fraud_details',
+        'invoice_id',
+        'metadata',
+        'amount_refunded',
+        'customer_id',
+        'source',
+        'description',
+        'dispute',
+        'statement_descriptor',
+        'receipt_email',
+        'receipt_number',
+        'shipping',
+        'destination',
+        'application_fee'
+    ];
 
-    static $jsonFields = ['dispute', 'fraud_details', 'metadata', 'refunds', 'shipping', 'source'];
+    /**
+     * @var array
+     */
+    public static $jsonFields = ['dispute', 'fraud_details', 'metadata', 'refunds', 'shipping', 'source'];
 
-    static $fieldsConnection = ['uuid' => 'id', 'customer_id' => 'customer', 'account_id' => 'account', 'invoice_id' => 'invoice', 'balance_transaction_id' => 'balance_transaction'];
+    /**
+     * @var array
+     */
+    public static $fieldsConnection = [
+        'uuid' => 'id',
+        'customer_id' => 'customer',
+        'account_id' => 'account',
+        'invoice_id' => 'invoice',
+        'balance_transaction_id' => 'balance_transaction'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -76,5 +157,4 @@ class Charge extends Model
     {
         return $this->hasOne('App\Fee', 'uuid', 'charge_id');
     }
-
 }
