@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Stripe;
+
 use Illuminate\Database\Eloquent\Model;
 use Stripe\StripeObject;
 
@@ -47,9 +48,14 @@ trait IsStripeEntity
      */
     public function createFromStripe($notification)
     {
-        $entity = !isset($notification['data']['object']['id']) ? null : $this->where('uuid', $notification['data']['object']['id'])->first();
+        $entity = !isset($notification['data']['object']['id']) ? null : $this->where(
+            'uuid',
+            $notification['data']['object']['id']
+        )->first();
 
-        if(!is_null($entity)) return $this->updateEntity($entity, $notification);
+        if (!is_null($entity)) {
+            return $this->updateEntity($entity, $notification);
+        }
 
         return $this->create($this->buildAttributesFromStripe($notification['data']['object']));
     }
@@ -79,11 +85,10 @@ trait IsStripeEntity
     public function buildAttributesFromStripe($notification)
     {
 
-        foreach ($this->getFieldsConnection() as $key => $field)
-        {
+        foreach ($this->getFieldsConnection() as $key => $field) {
             //['uuid' => 'id']
 
-            if (isset($notification[$field]) AND in_array($field, static::$fieldsConnection)) {
+            if (isset($notification[$field]) && in_array($field, static::$fieldsConnection)) {
                 $notification[$key] = $notification[$field];
                 unset($notification[$field]);
 
@@ -105,8 +110,7 @@ trait IsStripeEntity
     {
         $output = [];
 
-        foreach($data as $key => $value)
-        {
+        foreach ($data as $key => $value) {
             $output[$key] = in_array($key, static::$jsonFields) ? json_encode($value) : $value;
         }
 
@@ -124,8 +128,9 @@ trait IsStripeEntity
      */
     public function updateEntity(Model $entity, $notification)
     {
-        if(preg_match('/\.deleted/', $notification['type']))
+        if (preg_match('/\.deleted/', $notification['type'])) {
             return $entity->delete();
+        }
 
         return $entity->update($this->buildAttributesFromStripe($notification['data']['object']));
     }
@@ -142,7 +147,7 @@ trait IsStripeEntity
     {
         $json = $object->__toJSON();
 
-        return (array) json_decode($json, true);
+        return (array)json_decode($json, true);
     }
 
 }

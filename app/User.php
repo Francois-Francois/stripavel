@@ -3,9 +3,13 @@
 namespace App;
 
 use App\Stripe\IsStripeEntity;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ * @package App
+ */
 class User extends Authenticatable
 {
     use SoftDeletes, IsStripeEntity;
@@ -15,7 +19,29 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'uuid', 'created', 'first_name', 'last_name', 'ip_address', 'account_balance', 'description', 'discount_obj', 'metadata', 'shipping', 'default_source' ,'name', 'email', 'password', 'currency', 'delinquent', 'sources', 'subscriptions', 'last_four', 'year', 'month', 'fingerprint', 'confirmation_code'
+        'uuid',
+        'created',
+        'first_name',
+        'last_name',
+        'ip_address',
+        'account_balance',
+        'description',
+        'discount_obj',
+        'metadata',
+        'shipping',
+        'default_source',
+        'name',
+        'email',
+        'password',
+        'currency',
+        'delinquent',
+        'sources',
+        'subscriptions',
+        'last_four',
+        'year',
+        'month',
+        'fingerprint',
+        'confirmation_code'
     ];
 
     /**
@@ -24,16 +50,47 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
+    /**
+     * @var array
+     */
     protected $dates = ['created_at', 'update_at', 'created'];
 
-    static $stripeFields = ['uuid', 'created', 'account_balance', 'description', 'discount_obj', 'metadata', 'shipping', 'default_source', 'email', 'currency', 'delinquent', 'sources', 'subscriptions_obj'];
+    /**
+     * @var array
+     */
+    public static $stripeFields = [
+        'uuid',
+        'created',
+        'account_balance',
+        'description',
+        'discount_obj',
+        'metadata',
+        'shipping',
+        'default_source',
+        'email',
+        'currency',
+        'delinquent',
+        'sources',
+        'subscriptions_obj'
+    ];
 
-    static $jsonFields = ['discount_obj', 'metadata', 'shipping', 'sources', 'subscriptions_obj'];
+    /**
+     * @var array
+     */
+    public static $jsonFields = ['discount_obj', 'metadata', 'shipping', 'sources', 'subscriptions_obj'];
 
-    static $fieldsConnection = ['uuid' => 'id', 'discount_obj' => 'discount', 'subscriptions_obj' => 'subscriptions'];
+    /**
+     * @var array
+     */
+    public static $fieldsConnection = [
+        'uuid' => 'id',
+        'discount_obj' => 'discount',
+        'subscriptions_obj' => 'subscriptions'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

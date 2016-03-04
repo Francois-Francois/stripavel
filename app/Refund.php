@@ -6,19 +6,64 @@ use App\Stripe\IsStripeEntity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Refund
+ * @package App
+ */
 class Refund extends Model
 {
     use SoftDeletes, IsStripeEntity;
 
-    protected $fillable = ['uuid', 'amount', 'created', 'currency', 'balance_transaction_id', 'charge_id', 'metadata', 'reason', 'receipt_number', 'description'];
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'uuid',
+        'amount',
+        'created',
+        'currency',
+        'balance_transaction_id',
+        'charge_id',
+        'metadata',
+        'reason',
+        'receipt_number',
+        'description'
+    ];
 
+    /**
+     * @var array
+     */
     protected $dates = ['created', 'created_at', 'updated_at', 'deleted_at'];
 
-    static $stripeFields = ['uuid', 'amount', 'created', 'currency', 'balance_transaction_id', 'charge_id', 'metadata', 'reason', 'receipt_number', 'description'];
+    /**
+     * @var array
+     */
+    public static $stripeFields = [
+        'uuid',
+        'amount',
+        'created',
+        'currency',
+        'balance_transaction_id',
+        'charge_id',
+        'metadata',
+        'reason',
+        'receipt_number',
+        'description'
+    ];
 
-    static $jsonFields = ['metadata'];
+    /**
+     * @var array
+     */
+    public static $jsonFields = ['metadata'];
 
-    static $fieldsConnection = ['uuid' => 'id', 'balance_transaction_id' => 'balance_transaction', 'charge_id' => 'charge'];
+    /**
+     * @var array
+     */
+    public static $fieldsConnection = [
+        'uuid' => 'id',
+        'balance_transaction_id' => 'balance_transaction',
+        'charge_id' => 'charge'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

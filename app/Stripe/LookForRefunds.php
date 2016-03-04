@@ -20,9 +20,11 @@ trait LookForRefunds
 
             static::$event(function ($model) use ($event) {
 
-                $payload = (array) json_decode($model->refunds, true);
+                $payload = (array)json_decode($model->refunds, true);
 
-                if(!empty($payload)) return $model->refundsNeedaDatabase($payload['data']);
+                if (!empty($payload)) {
+                    return $model->refundsNeedaDatabase($payload['data']);
+                }
 
             });
         }
@@ -36,7 +38,9 @@ trait LookForRefunds
     public function refundsNeedaDatabase($payload)
     {
         foreach ($payload as $refund) {
-            $payload['data']['object'] = $refund; $payload['type'] = null;
+
+            $payload['data']['object'] = $refund;
+            $payload['type'] = null;
 
             if (!is_null(Refund::where('uuid', $refund['id'])->first())) {
 
@@ -62,7 +66,9 @@ trait LookForRefunds
         }
 
         return [
-            'created', 'deleted', 'updated',
+            'created',
+            'deleted',
+            'updated',
         ];
     }
 }

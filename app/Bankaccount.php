@@ -6,19 +6,76 @@ use App\Stripe\IsStripeEntity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Bankaccount
+ * @package App
+ */
 class Bankaccount extends Model
 {
     use SoftDeletes, IsStripeEntity;
 
-    protected $fillable = ['uuid', 'account_id', 'bank_name', 'country', 'currency', 'default_for_currency', 'fingerprint', 'last4', 'metadata', 'name', 'routing_number', 'status', 'usage', 'customer_reference', 'address_line1', 'address_city', 'address_zip', 'customer_id'];
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'uuid',
+        'account_id',
+        'bank_name',
+        'country',
+        'currency',
+        'default_for_currency',
+        'fingerprint',
+        'last4',
+        'metadata',
+        'name',
+        'routing_number',
+        'status',
+        'usage',
+        'customer_reference',
+        'address_line1',
+        'address_city',
+        'address_zip',
+        'customer_id'
+    ];
 
+    /**
+     * @var array
+     */
     protected $dates = ['created_at', 'deleted_at', 'updated_at'];
 
-    static $stripeFields = ['uuid', 'account_id', 'bank_name', 'country', 'currency', 'default_for_currency', 'fingerprint', 'last4', 'metadata', 'name', 'routing_number', 'status', 'usage', 'customer_reference', 'address_line1', 'address_city', 'address_zip', 'customer_id'];
+    /**
+     * @var array
+     */
+    public static $stripeFields = [
+        'uuid',
+        'account_id',
+        'bank_name',
+        'country',
+        'currency',
+        'default_for_currency',
+        'fingerprint',
+        'last4',
+        'metadata',
+        'name',
+        'routing_number',
+        'status',
+        'usage',
+        'customer_reference',
+        'address_line1',
+        'address_city',
+        'address_zip',
+        'customer_id'
+    ];
 
-    static $jsonFields = [];
+    /**
+     * @var array
+     */
+    public static $jsonFields = [];
 
-    static $fieldsConnection = ['uuid' => 'id', 'customer_id' => 'customer', 'account_id' => 'account'];
+    /**
+     * @var array
+     */
+    public static $fieldsConnection = ['uuid' => 'id', 'customer_id' => 'customer', 'account_id' => 'account'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
