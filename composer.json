@@ -1,7 +1,7 @@
 {
     "name": "rikless/stripavel",
     "description": "Stripe quick start for Laravel Framework.",
-    "keywords": ["stripe", "laravel", "stripavel", "framework"],
+    "keywords": ["stripe", "laravel"],
     "license": "GPLv3",
     "type": "project",
     "require": {
