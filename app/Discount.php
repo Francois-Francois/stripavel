@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Stripe\IsStripeEntity;
+use App\Stripe\LookForCoupon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,20 +13,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Discount extends Model
 {
-    use SoftDeletes, IsStripeEntity;
+    use SoftDeletes, IsStripeEntity, LookForCoupon;
 
     /**
      * @var array
      */
     protected $fillable = [
-        'uuid',
         'coupon_obj',
-        'coupon_id',
         'customer_id',
         'start',
         'end',
         'subscription',
-        'currency'
     ];
 
     /**
@@ -37,14 +35,11 @@ class Discount extends Model
      * @var array
      */
     public static $stripeFields = [
-        'uuid',
         'coupon_obj',
-        'coupon_id',
         'customer_id',
         'start',
         'end',
         'subscription',
-        'currency'
     ];
 
     /**
@@ -55,7 +50,7 @@ class Discount extends Model
     /**
      * @var array
      */
-    public static $fieldsConnection = ['uuid' => 'id', 'coupon_obj' => 'coupon', 'customer_id' => 'customer'];
+    public static $fieldsConnection = ['coupon_obj' => 'coupon', 'customer_id' => 'customer'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -65,11 +60,4 @@ class Discount extends Model
         return $this->belongsTo('App\User', 'customer_id', 'uuid');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function invoice()
-    {
-        return $this->hasOne('App\Invoice', 'discount_id', 'uuid');
-    }
 }

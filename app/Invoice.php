@@ -131,14 +131,6 @@ class Invoice extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function discount()
-    {
-        return $this->belongsTo('App\Disount', 'discount_id', 'uuid');
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function charges()

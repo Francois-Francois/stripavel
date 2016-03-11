@@ -28,7 +28,7 @@ class Coupon extends Model
         'duration',
         'redeem_by',
         'max_redemptions',
-        'times_redeem',
+        'times_redeemed',
         'duration_in_months',
         'valid'
     ];
@@ -52,7 +52,7 @@ class Coupon extends Model
         'duration',
         'redeem_by',
         'max_redemptions',
-        'times_redeem',
+        'times_redeemed',
         'duration_in_months',
         'valid'
     ];
