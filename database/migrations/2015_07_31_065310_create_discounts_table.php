@@ -14,10 +14,7 @@ class CreateDiscountsTable extends Migration
     {
         Schema::create('discounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('uuid');
             $table->json('coupon_obj');
-            $table->string('coupon_id');
-            $table->enum('currency', ['usd', 'gbp', 'eur']);
             $table->string('customer_id')->nullable();
             $table->timestamp('start');
             $table->timestamp('end')->nullable();
